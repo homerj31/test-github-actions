@@ -9,12 +9,12 @@ def es_numero(valor):
     except ValueError:
         return False
 
-with open("Day54Totals.csv") as file:
-  reader = csv.DictReader(file)
-  for row in reader:
-    if (es_numero(row["Quantity"]) and es_numero(row["Cost"])):
-        total += float(row["Quantity"]) * float(row["Cost"])
-    else:
-        print(f"Invalid data in row: {row}")
+with open("Day54Totals.csv", "w+", encoding="utf-8") as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        if (es_numero(row["Quantity"]) and es_numero(row["Cost"])):
+            total += float(row["Quantity"]) * float(row["Cost"])
+        else:
+            print(f"Invalid data in row: {row}")
 
 print(f"Total: ${round(total,2)}")
