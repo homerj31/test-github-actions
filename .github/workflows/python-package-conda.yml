@@ -3,7 +3,7 @@ name: Workflow con Python
 on:
   push:
     branches:
-      - master-actions
+      - master
   workflow_dispatch:
 
 jobs:
@@ -16,4 +16,4 @@ jobs:
         with:
           python-version: '3.9'
       - name: Ejecutar script Python
-        run: python mi_script.py
+        run: python Manejo_ficheros.py
