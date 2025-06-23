@@ -1,0 +1,19 @@
+name: Workflow con Python
+
+on:
+  push:
+    branches:
+      - master-actions
+  workflow_dispatch:
+
+jobs:
+  ejecutar-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Ejecutar script Python
+        run: python mi_script.py
