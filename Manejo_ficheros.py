@@ -16,7 +16,7 @@ with open("Day54Totals.csv", "r", encoding="utf-8") as file:
     for row in reader:
         if (es_numero(row["Quantity"]) and es_numero(row["Cost"])):
             total += int(row["Quantity"]) * float(row["Cost"])
-            print (f"Del producto {row["Name"]}")
+            print (f"Del producto {row['Name']} tenemos {row['Quantity']} unidades y cada una cuesta {row['Cost"]}€')
         else:
             print(f"Invalid data in row: {row}")
 
