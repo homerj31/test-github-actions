@@ -1,4 +1,4 @@
-name: Workflow con Python
+name: manejo ficheros
 
 on:
   push:
