@@ -1,1 +1,1 @@
-Print ("Hola Oscar")
+print ("Hola Oscar")
