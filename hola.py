@@ -1,1 +1,2 @@
-print ("Hola Oscar")
+nombre = input ("Dime tu nombre:)
+print (f"Hola {{ nombre }}")
