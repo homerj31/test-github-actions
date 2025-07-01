@@ -16,4 +16,4 @@ jobs:
         with:
           python-version: '3.9'
       - name: Ejecutar script Python
-        run: python hola.py
+        run: python hola.py Oscar
