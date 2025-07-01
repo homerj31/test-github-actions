@@ -1,2 +1,2 @@
-nombre = input ("Dime tu nombre:)
-print (f"Hola {{ nombre }}")
+nombre = input("Dime tu nombre:)
+print (f"Hola { nombre }")
