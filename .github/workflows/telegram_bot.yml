@@ -11,7 +11,10 @@ on:
         required: true
       mensaje:
         description: 'Mensaje'
-        required: true 
+        required: true
+      token:
+        description: 'token'
+        required: true
 
 jobs:
   ejecutar-python:
