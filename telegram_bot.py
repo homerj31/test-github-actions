@@ -1,4 +1,5 @@
 import requests
+import os
 
 def send_telegram_message(message: str, chat_id: str, bot_token: str):
     """
@@ -18,5 +19,13 @@ def send_telegram_message(message: str, chat_id: str, bot_token: str):
     else:
         print(f"Error al enviar mensaje: {response.status_code} - {response.text}")
 
+canal = os.environ.get("canal")
+print(f"El parámetro recibido es: {canal}")
+mensaje = os.environ.get("mensaje")
+print(f"El parámetro recibido es: {mensaje}")
+token = os.environ.get("token")
+print(f"El parámetro recibido es: {token}")
+
+
 # Ejemplo de uso
-# send_telegram_message("Hola, este es un mensaje de prueba!", "123456789", "TU_BOT_TOKEN")
+send_telegram_message(mensaje, canal, token)
