@@ -10,10 +10,10 @@ on:
         description: 'Canal para enviar mensaje'
         required: true
       mensaje:
-        description: 'Mensaje'
+        description: 'Mensaje para enviar'
         required: true
       token:
-        description: 'token'
+        description: 'token del canal'
         required: true
 
 jobs:
