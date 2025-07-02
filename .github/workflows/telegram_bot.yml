@@ -5,6 +5,13 @@ on:
 #    branches:
 #      - master
   workflow_dispatch:
+    inputs:
+      canal:
+        description: 'Canal para enviar mensaje'
+        required: true
+      mensaje:
+        description: 'Mensaje'
+        required: true 
 
 jobs:
   ejecutar-python:
