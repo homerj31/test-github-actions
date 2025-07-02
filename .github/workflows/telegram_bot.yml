@@ -14,6 +14,8 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
+      - name: Instalar requests
+        run: pip install requests          
       - name: Ejecutar script Python
         run: python telegram_bot.py
