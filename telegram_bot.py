@@ -19,11 +19,12 @@ def send_telegram_message(message: str, chat_id: str, bot_token: str):
     else:
         print(f"Error al enviar mensaje: {response.status_code} - {response.text}")
 
-canal = os.environ.get("canal")
+canal = os.getenv('CANAL')
+mensaje = os.getenv('MENSAJE')
+token = os.getenv('TOKEN')
+
 print(f"El parámetro recibido es: {canal}")
-mensaje = os.environ.get("mensaje")
 print(f"El parámetro recibido es: {mensaje}")
-token = os.environ.get("token")
 print(f"El parámetro recibido es: {token}")
 
 
