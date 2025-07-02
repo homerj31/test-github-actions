@@ -26,6 +26,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Instalar requests
-        run: pip install requests          
+        run: pip install requests
+      - name: Exportar variables de entorno
+        run: |
+          echo "CANAL=${{ github.event.inputs.canal }}" >> $GITHUB_ENV
+          echo "MENSAJE=${{ github.event.inputs.mensaje }}" >> $GITHUB_ENV
+          echo "TOKEN=${{ github.event.inputs.token }}" >> $GITHUB_ENV        
       - name: Ejecutar script Python
         run: python telegram_bot.py
