@@ -9,9 +9,7 @@ on:
       mensaje:
         description: 'Mensaje para enviar'
         required: true
-      token:
-        description: 'Token del bot'
-        required: true
+      # Eliminamos token de inputs
 
 jobs:
   ejecutar-python:
@@ -19,15 +17,13 @@ jobs:
     env:
       MENSAJE: ${{ github.event.inputs.mensaje }}
       CANAL: ${{ github.event.inputs.canal }}
-      TOKEN: ${{ github.event.inputs.token }}
+      TOKEN: ${{ secrets.TOKEN }}  # TOKEN guardado en Secrets del repo
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Aplicar máscara para valores sensibles
         run: |
-          echo "::add-mask::$MENSAJE" > /dev/null
-          echo "::add-mask::$CANAL" > /dev/null
           echo "::add-mask::$TOKEN" > /dev/null
 
       - name: Configurar Python
