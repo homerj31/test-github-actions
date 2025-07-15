@@ -37,6 +37,6 @@ jobs:
       - name: Ejecutar script de Python
         run: python telegram_bot.py
         env:
-          MENSAJE: $MENSAJE
-          CANAL: $CANAL
-          TOKEN: $TOKEN
+          MENSAJE: ${{ env.MENSAJE }}
+          CANAL: ${{ env.CANAL }}
+          TOKEN: ${{ env.TOKEN }}
