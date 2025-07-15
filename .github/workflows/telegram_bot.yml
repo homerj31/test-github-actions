@@ -1,9 +1,6 @@
 name: Telegram Bot
 
 on:
-#  push:
-#    branches:
-#      - master
   workflow_dispatch:
     inputs:
       canal:
@@ -13,33 +10,48 @@ on:
         description: 'Mensaje para enviar'
         required: true
       token:
-        description: 'token del canal'
+        description: 'Token del bot'
         required: true
 
 jobs:
   ejecutar-python:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Instalar requests
         run: pip install requests
+
       - name: Ocultar valores sensibles del log
         shell: bash
         run: |
-          export MENSAJE="${{ github.event.inputs.mensaje }}"
-          export CANAL="${{ github.event.inputs.canal }}"
-          export TOKEN="${{ github.event.inputs.token }}"
-          
-          printf "::add-mask::%s\n" "$MENSAJE"
-          printf "::add-mask::%s\n" "$CANAL"
-          printf "::add-mask::%s\n" "$TOKEN"
+          echo "${{ github.event.inputs.mensaje }}" > .msg
+          echo "${{ github.event.inputs.canal }}" > .canal
+          echo "${{ github.event.inputs.token }}" > .token
+
+          MENSAJE=$(<.msg)
+          CANAL=$(<.canal)
+          TOKEN=$(<.token)
+
+          echo "::add-mask::$MENSAJE"
+          echo "::add-mask::$CANAL"
+          echo "::add-mask::$TOKEN"
+
       - name: Ejecutar script de Python
-        env:
-          CANAL: ${{ github.event.inputs.canal }}
-          MENSAJE: ${{ github.event.inputs.mensaje }}
-          TOKEN: ${{ github.event.inputs.token }}
-        run: python telegram_bot.py
+        shell: bash
+        run: |
+          echo "${{ github.event.inputs.mensaje }}" > .msg
+          echo "${{ github.event.inputs.canal }}" > .canal
+          echo "${{ github.event.inputs.token }}" > .token
+
+          export MENSAJE=$(<.msg)
+          export CANAL=$(<.canal)
+          export TOKEN=$(<.token)
+
+          python telegram_bot.py
