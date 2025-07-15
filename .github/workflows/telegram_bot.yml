@@ -30,13 +30,13 @@ jobs:
       - name: Ocultar valores sensibles del log
         shell: bash
         run: |
-          printf "::add-mask::%s\n" "$MENSAJE" >> /dev/null
-          printf "::add-mask::%s\n" "$CANAL" >> /dev/null
-          printf "::add-mask::%s\n" "$TOKEN" >> /dev/null
-        env:
-          MENSAJE: ${{ github.event.inputs.mensaje }}
-          CANAL: ${{ github.event.inputs.canal }}
-          TOKEN: ${{ github.event.inputs.token }}
+          export MENSAJE="${{ github.event.inputs.mensaje }}"
+          export CANAL="${{ github.event.inputs.canal }}"
+          export TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          
+          printf "::add-mask::%s\n" "$MENSAJE"
+          printf "::add-mask::%s\n" "$CANAL"
+          printf "::add-mask::%s\n" "$TOKEN"
       - name: Ejecutar script de Python
         env:
           CANAL: ${{ github.event.inputs.canal }}
