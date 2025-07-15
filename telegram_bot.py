@@ -23,9 +23,9 @@ canal = os.getenv('CANAL')
 mensaje = os.getenv('MENSAJE')
 token = os.getenv('TOKEN')
 
-#print(f"El parámetro recibido es: {canal}")
-#print(f"El parámetro recibido es: {mensaje}")
-#print(f"El parámetro recibido es: {token}")
+print(f"Token: '{token}'")
+print(f"Canal: '{canal}'")
+print(f"Mensaje: '{mensaje}'")
 
 
 # Ejemplo de uso
