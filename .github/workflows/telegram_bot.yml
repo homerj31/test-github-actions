@@ -28,6 +28,7 @@ jobs:
       - name: Instalar requests
         run: pip install requests
       - name: Ocultar valores sensibles del log
+        shell: bash
         run: |
           echo "::add-mask::${{ github.event.inputs.mensaje }}"
           echo "::add-mask::${{ github.event.inputs.canal }}"
