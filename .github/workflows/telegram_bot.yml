@@ -27,6 +27,10 @@ jobs:
           python-version: '3.12'
       - name: Instalar requests
         run: pip install requests
+      - name: Ocultar valores sensibles del log
+        run: |
+          echo "::add-mask::${{ github.event.inputs.mensaje }}"
+          echo "::add-mask::${{ github.event.inputs.canal }}"        
       - name: Ejecutar script de Python
         env:
           CANAL: ${{ github.event.inputs.canal }}
