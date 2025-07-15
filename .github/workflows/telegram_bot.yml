@@ -20,6 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Ocultar valores sensibles del log
+        shell: bash
+        run: |
+          echo "::add-mask::${{ github.event.inputs.mensaje }}"
+          echo "::add-mask::${{ github.event.inputs.canal }}"
+          echo "::add-mask::${{ github.event.inputs.token }}"
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
@@ -28,30 +35,9 @@ jobs:
       - name: Instalar requests
         run: pip install requests
 
-      - name: Ocultar valores sensibles del log
-        shell: bash
-        run: |
-          echo "${{ github.event.inputs.mensaje }}" > .msg
-          echo "${{ github.event.inputs.canal }}" > .canal
-          echo "${{ github.event.inputs.token }}" > .token
-
-          MENSAJE=$(<.msg)
-          CANAL=$(<.canal)
-          TOKEN=$(<.token)
-
-          echo "::add-mask::$MENSAJE"
-          echo "::add-mask::$CANAL"
-          echo "::add-mask::$TOKEN"
-
       - name: Ejecutar script de Python
-        shell: bash
-        run: |
-          echo "${{ github.event.inputs.mensaje }}" > .msg
-          echo "${{ github.event.inputs.canal }}" > .canal
-          echo "${{ github.event.inputs.token }}" > .token
-
-          export MENSAJE=$(<.msg)
-          export CANAL=$(<.canal)
-          export TOKEN=$(<.token)
-
-          python telegram_bot.py
+        env:
+          MENSAJE: ${{ github.event.inputs.mensaje }}
+          CANAL: ${{ github.event.inputs.canal }}
+          TOKEN: ${{ github.event.inputs.token }}
+        run: python telegram_bot.py
