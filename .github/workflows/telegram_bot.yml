@@ -32,7 +32,7 @@ jobs:
         run: |
           export MENSAJE="${{ github.event.inputs.mensaje }}"
           export CANAL="${{ github.event.inputs.canal }}"
-          export TOKEN="${{ secrets.TELEGRAM_BOT_TOKEN }}"
+          export TOKEN="${{ github.event.inputs.token }}"
           
           printf "::add-mask::%s\n" "$MENSAJE"
           printf "::add-mask::%s\n" "$CANAL"
