@@ -16,16 +16,19 @@ on:
 jobs:
   ejecutar-python:
     runs-on: ubuntu-latest
+    env:
+      MENSAJE: ${{ github.event.inputs.mensaje }}
+      CANAL: ${{ github.event.inputs.canal }}
+      TOKEN: ${{ github.event.inputs.token }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Ocultar valores sensibles del log
-        shell: bash
+      - name: Aplicar máscara para valores sensibles
         run: |
-          echo "::add-mask::${{ github.event.inputs.mensaje }}"
-          echo "::add-mask::${{ github.event.inputs.canal }}"
-          echo "::add-mask::${{ github.event.inputs.token }}"
+          echo "::add-mask::$MENSAJE" > /dev/null
+          echo "::add-mask::$CANAL" > /dev/null
+          echo "::add-mask::$TOKEN" > /dev/null
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -36,8 +39,8 @@ jobs:
         run: pip install requests
 
       - name: Ejecutar script de Python
-        env:
-          MENSAJE: ${{ github.event.inputs.mensaje }}
-          CANAL: ${{ github.event.inputs.canal }}
-          TOKEN: ${{ github.event.inputs.token }}
         run: python telegram_bot.py
+        env:
+          MENSAJE: $MENSAJE
+          CANAL: $CANAL
+          TOKEN: $TOKEN
