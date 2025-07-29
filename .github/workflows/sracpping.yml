@@ -11,9 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
+          
+      - name: Instalar requests
+        run: pip install requests    
+
+      - name: Instalar bs4
+        run: pip install bs4  
+        
       - name: Ejecutar script Python
         run: python scrapping.py
