@@ -20,7 +20,16 @@ def scrape_url(url: str):
           
             for enlace in enlaces:
                 f.write(enlace + "\n")
-            
 
+def html_extract (url: str):
+    response = requests.get(url)
+    if response.status_code == 200:
+        print('La peticion fue exitosa')
+        html = response.text
+        # Guardar en un archivo
+        with open("pagina.html", "w", encoding="utf-8") as f:
+            f.write(html)            
+
+html_extract('http://petiteteenagergalleries.com/galleries')
 scrape_url('http://petiteteenagergalleries.com/galleries')
 
