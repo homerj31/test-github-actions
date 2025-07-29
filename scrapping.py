@@ -35,7 +35,10 @@ def html_extract (url: str):
         print('La petición fue exitosa')
 
         html = response.text
-        print(html)            
+        #print(html)            
+        # Guardar en un archivo
+        with open("pagina.html", "w", encoding="utf-8") as f:
+            f.write(html)
 
 #scrape_url('http://petiteteenagergalleries.com/galleries')
 
