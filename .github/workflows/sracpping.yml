@@ -26,13 +26,8 @@ jobs:
       - name: Ejecutar script Python
         run: python scrapping.py
 
-      - name: Commit y push del archivo generado
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          git config --global user.name "homerj31"
-          git config --global user.email "obecerril.basalo@gmail.com"
-          git add pagina.html
-          git commit -m "Añadir archivo HTML generado por scraping" || echo "Sin cambios para commitear"
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
-          git push origin HEAD:${{ github.ref_name }}      
+      - name: Guardar HTML como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: pagina
+          path: pagina.html     
