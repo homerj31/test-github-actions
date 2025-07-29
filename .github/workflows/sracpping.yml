@@ -31,3 +31,9 @@ jobs:
         with:
           name: pagina
           path: pagina.html     
+
+      - name: Guardar enalces como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlaces
+          path: enlaces.txt           

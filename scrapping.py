@@ -20,8 +20,11 @@ def scrape_url(url: str):
       # Extraer todos los enlaces <a>
         enlaces = [urljoin(url, enlace.get('href')) for enlace in soup.find_all('a')]
 
-        for enlance in enlaces:
-            print (enlance)
+        for enlace in enlaces:
+            #print (enlace)
+                    # Guardar en un archivo
+            with open("enlaces.txt", "w", encoding="utf-8") as f:
+                f.write(enlace)
         # og_image = soup.find('meta', property='og:image')
         # if og_image:
         #     print(og_image['content'])
