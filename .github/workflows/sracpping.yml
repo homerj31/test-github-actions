@@ -25,3 +25,11 @@ jobs:
         
       - name: Ejecutar script Python
         run: python scrapping.py
+
+      - name: Commit y push del archivo generado
+        run: |
+          git config --global user.name "homerj31"
+          git config --global user.email "obecerril.basalo@gmail.com"
+          git add pagina.html
+          git commit -m "Añadir archivo HTML generado por scraping" || echo "Sin cambios para commitear"
+          git push        
