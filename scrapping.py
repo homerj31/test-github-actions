@@ -13,36 +13,14 @@ def scrape_url(url: str):
 
         soup = BeautifulSoup(response.text, 'html.parser')
 
-      # Extraer todos los
-      #  titulos = [titulo.string for titulo in soup.find_all('h1')]
-      # print(titulos)
-
       # Extraer todos los enlaces <a>
         enlaces = [urljoin(url, enlace.get('href')) for enlace in soup.find_all('a')]
 
         with open("enlaces.txt", "w", encoding="utf-8") as f:
           
             for enlace in enlaces:
-                f.write(enlace)
-        # og_image = soup.find('meta', property='og:image')
-        # if og_image:
-        #     print(og_image['content'])
-        # else:
-        #     print('No se encontró la imagen')
+                f.write(enlace + "\n")
             
-def html_extract (url: str):
-
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        print('La petición fue exitosa')
-
-        html = response.text
-        #print(html)            
-        # Guardar en un archivo
-        with open("pagina.html", "w", encoding="utf-8") as f:
-            f.write(html)
 
 scrape_url('http://petiteteenagergalleries.com/galleries')
 
-#html_extract('http://petiteteenagergalleries.com/galleries')
