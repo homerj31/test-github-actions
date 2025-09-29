@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Ejecutar script Python
-        run: python hola.py Oscar
+        run: python3.9 hola.py Oscar
