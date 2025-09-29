@@ -15,5 +15,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
+          python-location: '/usr/bin/python3.9'
       - name: Ejecutar script Python
         run: python hola.py Oscar
